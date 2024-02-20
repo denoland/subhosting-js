@@ -173,7 +173,7 @@ import Subhosting from 'subhosting';
 ```
 
 To do the inverse, add `import "subhosting/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/denoland/subhosting-js/tree/main/src/_shims#readme).
+This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/denoland/subhosting-js/tree/stainless/src/_shims#readme).
 
 You may also provide a custom `fetch` function when instantiating the client,
 which can be used to inspect or alter the `Request` or `Response` before/after each request:
