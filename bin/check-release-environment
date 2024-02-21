@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
 
+warnings=()
 errors=()
 
 if [ -z "${NPM_TOKEN}" ]; then
-  errors+=("The SUBHOSTING_NPM_TOKEN secret has not been set. Please set it in either this repository's secrets or your organization secrets")
+  warnings+=("The SUBHOSTING_NPM_TOKEN secret has not been set. Please set it in either this repository's secrets or your organization secrets")
 fi
 
-len=${#errors[@]}
+lenWarnings=${#warnings[@]}
 
-if [[ len -gt 0 ]]; then
+if [[ lenWarnings -gt 0 ]]; then
+  echo -e "Found the following warnings in the release environment:\n"
+
+  for warning in "${warnings[@]}"; do
+    echo -e "- $warning\n"
+  done
+fi
+
+lenErrors=${#errors[@]}
+
+if [[ lenErrors -gt 0 ]]; then
   echo -e "Found the following errors in the release environment:\n"
 
   for error in "${errors[@]}"; do
