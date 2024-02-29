@@ -1,7 +1,7 @@
 {
   "name": "subhosting",
-  "version": "0.1.0-alpha.1",
-  "description": "The official Deno Deploy Subhosting REST API client for JavaScript and TypeScript",
+  "version": "0.1.0-alpha.2",
+  "description": "The official TypeScript library for the Subhosting API",
   "author": "Subhosting <deploy@deno.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
