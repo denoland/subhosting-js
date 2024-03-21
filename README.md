@@ -329,3 +329,13 @@ Note that React Native is not supported at this time.
 
 If you are interested in other runtime environments, please open or upvote an
 issue on GitHub.
+
+## Contributing
+
+These client libraries are auto-generated with
+[Stainless API](https://www.stainlessapi.com/) based on the
+[OpenAPI spec](https://www.openapis.org/). If you’re interested in contributing
+to the readme/documentation, feel free to submit a PR. However, since our
+OpenAPI spec is generated from our private Deno Deploy repository, if you’re
+interested in contributing code, please provide feedback in the
+[issues](https://github.com/denoland/subhosting-js/issues) and we’ll review it.
