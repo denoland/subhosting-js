@@ -6,12 +6,12 @@ This library provides convenient access to the Subhosting REST API from server-s
 
 The REST API documentation can be found [on apidocs.deno.com](https://apidocs.deno.com/). The full API of this library can be found in [api.md](api.md).
 
+It is generated with [Stainless](https://www.stainlessapi.com/).
+
 ## Installation
 
 ```sh
-npm install --save subhosting
-# or
-yarn add subhosting
+npm install subhosting
 ```
 
 ## Usage
@@ -65,7 +65,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const organization = await subhosting.organizations.get('DEPLOY_ORG_ID').catch((err) => {
+  const organization = await subhosting.organizations.get('DEPLOY_ORG_ID').catch(async (err) => {
     if (err instanceof Subhosting.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -157,7 +157,51 @@ console.log(raw.headers.get('X-My-Header'));
 console.log(organization.id);
 ```
 
-## Customizing the fetch client
+### Making custom/undocumented requests
+
+This library is typed for convenient access to the documented API. If you need to access undocumented
+endpoints, params, or response properties, the library can still be used.
+
+#### Undocumented endpoints
+
+To make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.
+Options on the client, such as retries, will be respected when making these requests.
+
+```ts
+await client.post('/some/path', {
+  body: { some_prop: 'foo' },
+  query: { some_query_arg: 'bar' },
+});
+```
+
+#### Undocumented request params
+
+To make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented
+parameter. This library doesn't validate at runtime that the request matches the type, so any extra values you
+send will be sent as-is.
+
+```ts
+client.foo.create({
+  foo: 'my_param',
+  bar: 12,
+  // @ts-expect-error baz is not yet public
+  baz: 'undocumented option',
+});
+```
+
+For requests with the `GET` verb, any extra params will be in the query, all other requests will send the
+extra param in the body.
+
+If you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request
+options.
+
+#### Undocumented response properties
+
+To access undocumented response properties, you may access the response object with `// @ts-expect-error` on
+the response object, or cast the response object to the requisite type. Like the request params, we do not
+validate or strip extra properties from the response from the API.
+
+### Customizing the fetch client
 
 By default, this library uses `node-fetch` in Node, and expects a global `fetch` function in other environments.
 
@@ -175,6 +219,8 @@ import Subhosting from 'subhosting';
 To do the inverse, add `import "subhosting/shims/node"` (which does import polyfills).
 This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/denoland/subhosting-js/tree/main/src/_shims#readme)).
 
+### Logging and middleware
+
 You may also provide a custom `fetch` function when instantiating the client,
 which can be used to inspect or alter the `Request` or `Response` before/after each request:
 
@@ -183,7 +229,7 @@ import { fetch } from 'undici'; // as one example
 import Subhosting from 'subhosting';
 
 const client = new Subhosting({
-  fetch: async (url: RequestInfo, init?: RequestInfo): Promise<Response> => {
+  fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
     console.log('About to make a request', url, init);
     const response = await fetch(url, init);
     console.log('Got response', response);
@@ -195,7 +241,7 @@ const client = new Subhosting({
 Note that if given a `DEBUG=true` environment variable, this library will log all requests and responses automatically.
 This is intended for debugging purposes only and may change in the future without notice.
 
-## Configuring an HTTP(S) Agent (e.g., for proxies)
+### Configuring an HTTP(S) Agent (e.g., for proxies)
 
 By default, this library uses a stable agent for all http/https requests to reuse TCP connections, eliminating many TCP & TLS handshakes and shaving around 100ms off most requests.
 
@@ -204,7 +250,7 @@ If you would like to disable or customize this behavior, for example to use the 
 <!-- prettier-ignore -->
 ```ts
 import http from 'http';
-import HttpsProxyAgent from 'https-proxy-agent';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
 const subhosting = new Subhosting({
@@ -213,12 +259,11 @@ const subhosting = new Subhosting({
 
 // Override per-request:
 await subhosting.organizations.get('DEPLOY_ORG_ID', {
-  baseURL: 'http://localhost:8080/test-api',
   httpAgent: new http.Agent({ keepAlive: false }),
-})
+});
 ```
 
-## Semantic Versioning
+## Semantic versioning
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 

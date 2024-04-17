@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from 'subhosting/core';
 import { APIResource } from 'subhosting/resource';
@@ -94,7 +94,7 @@ export interface DeploymentCreateParams {
    * [the default compiler options](https://docs.deno.com/runtime/manual/advanced/typescript/configuration#how-deno-uses-a-configuration-file)
    * will be applied.
    */
-  compilerOptions?: DeploymentCreateParams.CompilerOptions;
+  compilerOptions?: DeploymentCreateParams.CompilerOptions | null;
 
   /**
    * KV database ID mappings to associate with the deployment.
