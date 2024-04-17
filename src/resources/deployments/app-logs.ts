@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from 'subhosting/core';
 import { APIResource } from 'subhosting/resource';
@@ -39,7 +39,7 @@ export type AppLogGetResponse = Array<AppLogGetResponse.AppLogGetResponseItem>;
 
 export namespace AppLogGetResponse {
   export interface AppLogGetResponseItem {
-    level: 'error' | 'warning' | 'info' | 'debug';
+    level: 'error' | 'warning' | 'info' | 'debug' | null;
 
     message: string;
 
@@ -77,7 +77,8 @@ export namespace AppLogGetResponse {
       | 'gcp-us-west1'
       | 'gcp-us-west2'
       | 'gcp-us-west3'
-      | 'gcp-us-west4';
+      | 'gcp-us-west4'
+      | null;
 
     /**
      * Log timestamp
@@ -102,7 +103,7 @@ export interface AppLogGetParams {
    *
    * Multiple levels can be specified using comma-separated format.
    */
-  level?: 'error' | 'warning' | 'info' | 'debug';
+  level?: 'error' | 'warning' | 'info' | 'debug' | null;
 
   /**
    * Maximum number of logs to return in one request.
@@ -167,7 +168,8 @@ export interface AppLogGetParams {
     | 'gcp-us-west1'
     | 'gcp-us-west2'
     | 'gcp-us-west3'
-    | 'gcp-us-west4';
+    | 'gcp-us-west4'
+    | null;
 
   /**
    * Start time of the time range to filter logs by.

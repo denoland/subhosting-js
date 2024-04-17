@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 /**
  * Project analytics data
@@ -101,7 +101,7 @@ export interface Domain {
    *
    * Note that this is not UUID v4, as opposed to organization ID and project ID.
    */
-  deploymentId?: string;
+  deploymentId?: string | null;
 
   /**
    * The ID of the project that the domain is associated with.

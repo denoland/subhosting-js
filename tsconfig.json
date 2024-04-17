@@ -12,7 +12,6 @@
       "subhosting/_shims/auto/*": ["src/_shims/auto/*-node"],
       "subhosting/*": ["src/*"],
       "subhosting": ["src/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,
 
