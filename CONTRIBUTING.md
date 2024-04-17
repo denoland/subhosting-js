@@ -42,7 +42,7 @@ If you’d like to use the repository from source, you can either install from g
 To install via git:
 
 ```bash
-npm install --save git+ssh://git@github.com:denoland/subhosting-js.git
+npm install git+ssh://git@github.com:denoland/subhosting-js.git
 ```
 
 Alternatively, to link a local copy of the repo:
@@ -68,7 +68,7 @@ pnpm link -—global subhosting
 Most tests require you to [set up a mock server](https://github.com/stoplightio/prism) against the OpenAPI spec to run the tests.
 
 ```bash
-npx prism path/to/your/openapi.yml
+npx prism mock path/to/your/openapi.yml
 ```
 
 ```bash

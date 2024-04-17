@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from 'subhosting/core';
 import { APIResource } from 'subhosting/resource';
@@ -67,7 +67,7 @@ export interface DomainUpdateParams {
    *
    * Note that this is not UUID v4, as opposed to organization ID and project ID.
    */
-  deploymentId?: string;
+  deploymentId?: string | null;
 }
 
 export namespace Domains {
