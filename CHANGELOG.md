@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2024-05-06)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/denoland/subhosting-js/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** update via SDK Studio ([#15](https://github.com/denoland/subhosting-js/issues/15)) ([be5a5e7](https://github.com/denoland/subhosting-js/commit/be5a5e72319bd316c2501adebd8374988dd1e85f))
+* **api:** update via SDK Studio ([#16](https://github.com/denoland/subhosting-js/issues/16)) ([157b65d](https://github.com/denoland/subhosting-js/commit/157b65d4f62b4219a3429c809d32e383ac69d7f1))
+* update via SDK Studio ([#13](https://github.com/denoland/subhosting-js/issues/13)) ([027ec94](https://github.com/denoland/subhosting-js/commit/027ec945231269413ebc533ed84a51669dbded86))
+
 ## 0.1.0-alpha.1 (2024-02-21)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/denoland/subhosting-js/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
